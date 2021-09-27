@@ -170,3 +170,32 @@ Matrix& Matrix::Tran ()
     
     return temp;
     }
+
+bool Matrix::is_right_step()
+    {  
+    int first_not_null = -1;
+
+    while (matrix_[0][first_not_null++] == 0);
+        
+    
+    for (int y = 1; y < size_y_; y++)
+        {  
+        bool is_null = 1;
+        for (int x = 0; x < size_x_; x++)
+            {
+            if (matrix_[y][x] != 0)
+                {
+                is_null = 0;
+                if (x < first_not_null)
+                    return false;
+                else
+                    first_not_null = x;
+                break;
+                }
+            }
+        if (is_null)
+            first_not_null = size_x_;
+        }
+            
+    return true;
+    }

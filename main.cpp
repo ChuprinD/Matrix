@@ -7,12 +7,13 @@ using namespace std;
 
 int main()
     {
-    Matrix test1(2, 2, {{1, 2}, {3, 4}});
+    Matrix test1(5, 4, {{1, 2, 4, 5, 6}, 
+                        {0, 2, 4, 5, 6},
+                        {0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0}});
     Matrix test2(2, 3, {{1, 2}, {3, 4}, {5, 6}});
 
-    cout << test1 * test2;
-    test2.Tran();
-    cout << test2;
+    cout << test1.is_right_step() << endl;
 
     system("pause");
     return 0;

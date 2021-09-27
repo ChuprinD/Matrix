@@ -19,6 +19,8 @@ class Matrix
         ~Matrix ();
 
         Matrix& Tran ();
+        bool is_right_step();
+        //bool is_left_step();
 
         Matrix& operator= (const Matrix &matrix);
 
