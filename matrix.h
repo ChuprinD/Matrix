@@ -29,6 +29,7 @@ class Matrix
         int get_size_y();
         Matrix pow (int power); 
         Matrix get_identity_matrix (); 
+        T determinant();
         
 
         Matrix& operator= (const Matrix& matrix);

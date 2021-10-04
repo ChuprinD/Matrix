@@ -407,15 +407,66 @@ Matrix<T> Matrix<T>::pow (int power)
     }
 
 //=========== exception ==========================================
-Matrix<char> Matrix<char>::get_identity_matrix ()
+Matrix<char> Matrix<char>::pow (int power)
     {
     cout << "There is no function pow for \"char\" \n";
     return Matrix<char>();
     } 
 
-Matrix<string> Matrix<string>::get_identity_matrix ()
+Matrix<string> Matrix<string>::pow (int power)
     {
     cout << "There is no function pow for \"string\" \n";
     return Matrix<string>();
+    }
+//================================================================
+
+template <typename T>
+T Matrix<T>::determinant()
+    {
+    if (size_x_ != size_y_)
+        {
+        cout << "you can determinant only square matrix";  
+        return 0;
+        }
+    int det = 0;
+    if (size_x_ == 1)
+        return matrix_[0][0];
+    else if (size_x_ == 2)
+        return matrix_[0][0] * matrix_[1][1] - matrix_[0][1] * matrix_[1][0];
+    else
+        {
+        int s = 1;
+        for (int k = 0; k < size_x_; k++)
+            {
+            Matrix temp (size_x_ - 1, size_y_ - 1);       
+            for (int i = 1; i < size_x_; i++)
+                {
+                int t = 0;
+                for (int j = 0; j < size_x_; j++)   
+                    {
+                    if (j == k)
+                        continue;
+                    temp.matrix_[i - 1][t++] = matrix_[i][j];
+                    }
+                }
+            det += s * matrix_[0][k] * temp.determinant();  
+            s *= -1;
+            }
+        }
+
+    return det;
+    }
+
+//=========== exception ==========================================
+char Matrix<char>::determinant()
+    {
+    cout << "There is no determinant for \"char\" \n";
+    return 0;
+    } 
+
+string Matrix<string>::determinant()
+    {
+    cout << "There is no determinant for \"string\" \n";
+    return 0;
     }
 //================================================================
