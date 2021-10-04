@@ -27,17 +27,20 @@ class Matrix
         //bool is_left_step();
         int get_size_x();
         int get_size_y();
+        Matrix pow (int power); 
+        Matrix get_identity_matrix (); 
         
 
-        Matrix& operator= (const Matrix &matrix);
+        Matrix& operator= (const Matrix& matrix);
 
-        Matrix operator+  (const Matrix &rhs);
-        Matrix operator-  (const Matrix &rhs);
-        Matrix operator*  (const Matrix &rhs);
-        Matrix operator*  (const int rhs);
-        T*   operator[] (const int index);
+        Matrix operator+   (const Matrix& rhs);
+        Matrix operator-   (const Matrix& rhs);
+        Matrix operator*   (const Matrix& rhs);
+        Matrix operator*=  (const Matrix& rhs);
+        Matrix operator*   (const int rhs);
+        T*   operator[]    (const int index);
         template <typename T> friend ostream& operator<< (ostream &out, const Matrix<T> &matrix);
-        template <typename T>friend istream& operator>> (istream  &in,       Matrix<T> &matrix);
+        template <typename T> friend istream& operator>> (istream  &in,       Matrix<T> &matrix);
 
     };
 

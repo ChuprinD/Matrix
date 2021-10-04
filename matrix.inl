@@ -274,6 +274,30 @@ Matrix<char> Matrix<char>::operator* (const int rhs)
 //================================================================
 
 template <typename T>
+Matrix<T> Matrix<T>::operator*=  (const Matrix<T>& rhs)
+    {
+    for (int y = 0; y < size_y_; y++)
+        for (int x = 0; x < rhs.size_x_; x++)
+            for (int k = 0; k < size_x_; k++)
+                matrix_[y][x] *= matrix_[y][k] * rhs.matrix_[k][x];
+    return *this;
+    }
+
+//=========== exception ==========================================
+Matrix<char> Matrix<char>::operator*= (const Matrix<char> &rhs)
+    {
+    cout << "You cannot multiply \"char\" types\n";
+    return Matrix<char>();
+    } 
+
+Matrix<string> Matrix<string>::operator*= (const Matrix<string> &rhs)
+    {
+    cout << "You cannot multiply \"string\" types\n";
+    return Matrix<string>();
+    }
+//================================================================
+
+template <typename T>
 Matrix<T>& Matrix<T>::Tran()
     {
     Matrix temp (size_y_, size_x_);
@@ -342,3 +366,56 @@ int Matrix<T>::get_size_y()
     {
     return size_y_;
     }
+
+template <typename T>
+Matrix<T> Matrix<T>::get_identity_matrix ()
+    {
+    Matrix temp (size_x_, size_y_);
+
+    for (int i = 0; i < size_x_; i++)
+        temp[i][i] = 1;
+
+    return temp;
+    }
+
+//=========== exception ==========================================
+Matrix<char> Matrix<char>::get_identity_matrix ()
+    {
+    cout << "There is no identity matrix of \"char\" \n";
+    return Matrix<char>();
+    } 
+
+Matrix<string> Matrix<string>::get_identity_matrix ()
+    {
+    cout << "There is no identity matrix of \"string\" \n";
+    return Matrix<string>();
+    }
+//================================================================
+
+template <typename T>
+Matrix<T> Matrix<T>::pow (int power)
+    {
+    if (power == 0)
+        return this->get_identity_matrix();
+    if (power % 2 == 1)
+        return this->pow(power - 1) * *this;
+    else
+        {
+        Matrix temp = this->pow(power / 2);
+        return temp * temp;
+        }
+    }
+
+//=========== exception ==========================================
+Matrix<char> Matrix<char>::get_identity_matrix ()
+    {
+    cout << "There is no function pow for \"char\" \n";
+    return Matrix<char>();
+    } 
+
+Matrix<string> Matrix<string>::get_identity_matrix ()
+    {
+    cout << "There is no function pow for \"string\" \n";
+    return Matrix<string>();
+    }
+//================================================================
