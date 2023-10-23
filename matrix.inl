@@ -67,32 +67,6 @@ Matrix<T>::Matrix ()
     matrix_[0][0] = 0;
     }
 
-//=========== exception ==========================================
-Matrix<char>::Matrix ()
-    {
-    size_x_ = 0;
-    size_y_ = 0;
-
-    matrix_ = new char*[1];
-    for (int i = 0; i < 1; i++)
-        matrix_[i] = new char [1];
-
-    matrix_[0][0] = 'a';
-    }
-
-Matrix<string>::Matrix ()
-    {
-    size_x_ = 0;
-    size_y_ = 0;
-
-    matrix_ = new string*[1];
-    for (int i = 0; i < 1; i++)
-        matrix_[i] = new string [1];
-
-    matrix_[0][0] = 'a';
-    }
-//================================================================
-
 template <typename T>
 Matrix<T>::Matrix (const Matrix<T> &matrix1)
     {
@@ -173,14 +147,6 @@ Matrix<T> Matrix<T>::operator+ (const Matrix<T> &rhs)
     return temp; 
     }
 
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::operator+ (const Matrix<char> &rhs)
-    {
-    cout << "You cannot add \"char\" types\n";
-    return Matrix<char>();
-    } 
-//================================================================
-
 template <typename T>
 Matrix<T> Matrix<T>::operator- (const Matrix<T> &rhs)
     {
@@ -191,20 +157,6 @@ Matrix<T> Matrix<T>::operator- (const Matrix<T> &rhs)
             temp.matrix_[y][x] -= rhs.matrix_[y][x];
     return temp;
     }
-
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::operator- (const Matrix<char> &rhs)
-    {
-    cout << "You cannot subtract \"char\" types\n";
-    return Matrix<char>();
-    } 
-
-Matrix<string> Matrix<string>::operator- (const Matrix<string> &rhs)
-    {
-    cout << "You cannot subtract \"string\" types\n";
-    return Matrix<string>();
-    }
-//================================================================
 
 template <typename T>
 Matrix<T> Matrix<T>::operator* (const Matrix<T> &rhs)
@@ -218,20 +170,6 @@ Matrix<T> Matrix<T>::operator* (const Matrix<T> &rhs)
                 
     return temp;
     }
-
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::operator* (const Matrix<char> &rhs)
-    {
-    cout << "You cannot multiply \"char\" types\n";
-    return Matrix<char>();
-    } 
-
-Matrix<string> Matrix<string>::operator* (const Matrix<string> &rhs)
-    {
-    cout << "You cannot multiply \"string\" types\n";
-    return Matrix<string>();
-    }
-//================================================================
 
 template <typename T>
 Matrix<T>& Matrix<T>::operator= (const Matrix<T> &matrix)
@@ -265,14 +203,6 @@ Matrix<T> Matrix<T>::operator* (const int rhs)
     return temp;
     }
 
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::operator* (const int rhs)
-    {
-    cout << "You cannot multiply \"char\" by \"int\" types\n";
-    return Matrix<char>();
-    } 
-//================================================================
-
 template <typename T>
 Matrix<T> Matrix<T>::operator*=  (const Matrix<T>& rhs)
     {
@@ -282,20 +212,6 @@ Matrix<T> Matrix<T>::operator*=  (const Matrix<T>& rhs)
                 matrix_[y][x] *= matrix_[y][k] * rhs.matrix_[k][x];
     return *this;
     }
-
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::operator*= (const Matrix<char> &rhs)
-    {
-    cout << "You cannot multiply \"char\" types\n";
-    return Matrix<char>();
-    } 
-
-Matrix<string> Matrix<string>::operator*= (const Matrix<string> &rhs)
-    {
-    cout << "You cannot multiply \"string\" types\n";
-    return Matrix<string>();
-    }
-//================================================================
 
 template <typename T>
 Matrix<T>& Matrix<T>::Tran()
@@ -341,20 +257,6 @@ bool Matrix<T>::is_right_step()
     return true;
     }
 
-//=========== exception ==========================================
-bool Matrix<char>::is_right_step()
-    {
-    cout << "You cannot check for right step \"char\" matrix types\n";
-    return 0;
-    } 
-
-bool Matrix<string>::is_right_step()
-    {
-    cout << "You cannot check for right step \"string\" matrix types\n";
-    return 0;
-    }
-//================================================================
-
 template <typename T>
 int Matrix<T>::get_size_x()
     {
@@ -378,20 +280,6 @@ Matrix<T> Matrix<T>::get_identity_matrix ()
     return temp;
     }
 
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::get_identity_matrix ()
-    {
-    cout << "There is no identity matrix of \"char\" \n";
-    return Matrix<char>();
-    } 
-
-Matrix<string> Matrix<string>::get_identity_matrix ()
-    {
-    cout << "There is no identity matrix of \"string\" \n";
-    return Matrix<string>();
-    }
-//================================================================
-
 template <typename T>
 Matrix<T> Matrix<T>::pow (int power)
     {
@@ -405,20 +293,6 @@ Matrix<T> Matrix<T>::pow (int power)
         return temp * temp;
         }
     }
-
-//=========== exception ==========================================
-Matrix<char> Matrix<char>::pow (int power)
-    {
-    cout << "There is no function pow for \"char\" \n";
-    return Matrix<char>();
-    } 
-
-Matrix<string> Matrix<string>::pow (int power)
-    {
-    cout << "There is no function pow for \"string\" \n";
-    return Matrix<string>();
-    }
-//================================================================
 
 template <typename T>
 T Matrix<T>::determinant()
@@ -456,17 +330,3 @@ T Matrix<T>::determinant()
 
     return det;
     }
-
-//=========== exception ==========================================
-char Matrix<char>::determinant()
-    {
-    cout << "There is no determinant for \"char\" \n";
-    return 0;
-    } 
-
-string Matrix<string>::determinant()
-    {
-    cout << "There is no determinant for \"string\" \n";
-    return 0;
-    }
-//================================================================
